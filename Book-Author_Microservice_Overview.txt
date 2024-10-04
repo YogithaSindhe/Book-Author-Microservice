@@ -1,0 +1,106 @@
+ Project Overview
+This project demonstrates a microservices-based architecture built with Spring Boot, showcasing how different services can communicate with each other using Eureka Discovery Server and API Gateway for routing. The project consists of two microservices: BookService and AuthorService, which handle book and author data respectively. These services use MySQL for persistent storage and Hibernate for object-relational mapping (ORM).
+
+ Technologies Used
+- Spring Boot (for building microservices)
+- Eureka Server (for service registration and discovery)
+- Spring Cloud API Gateway (for routing and load balancing)
+- Hibernate (for ORM with MySQL)
+- MySQL (as the database)
+- Postman (for API testing)
+
+ Microservices
+1. BookService:
+   - Manages CRUD operations for books.
+   - Each book has a title, ISBN, and an associated author.
+   - Communicates with AuthorService to fetch author information.
+   
+2. AuthorService:
+   - Manages CRUD operations for authors.
+   - Each author has a name and nationality.
+   
+ Service Communication
+- Eureka Server: Registers both BookService and AuthorService, enabling them to discover each other.
+- API Gateway: Acts as a single entry point for routing requests to the correct microservice.
+
+ Project Structure
+- Eureka Server: Handles service registration and discovery.
+- API Gateway: Routes requests to the appropriate microservice.
+- BookService: Provides REST APIs for managing books.
+- AuthorService: Provides REST APIs for managing authors.
+
+ Features
+- Full CRUD operations for books and authors.
+- Service registration and discovery with Eureka.
+- API routing and load balancing via API Gateway.
+- MySQL database integration with Hibernate for data persistence.
+- Communication between microservices (BookService fetching data from AuthorService).
+
+ Endpoints
+- BookService:
+  - `GET /books`: Get all books
+  - `GET /books/{id}`: Get a book by ID
+  - `POST /books`: Create a new book
+  - `PUT /books/{id}`: Update an existing book
+  - `DELETE /books/{id}`: Delete a book
+
+- AuthorService:
+  - `GET /authors`: Get all authors
+  - `GET /authors/{id}`: Get an author by ID
+  - `POST /authors`: Create a new author
+  - `PUT /authors/{id}`: Update an existing author
+  - `DELETE /authors/{id}`: Delete an author
+
+ How to Run the Project
+
+1. Prerequisites:
+   - Java 17 or higher
+   - MySQL installed and running
+   - Postman for testing (optional)
+
+2. Steps:
+   - Clone the repository:
+     bash
+     git clone https://github.com/your-username/your-repo.git
+     
+   - Create databases for `BookService` and `AuthorService` in MySQL:
+     sql
+     CREATE DATABASE book_service_db;
+     CREATE DATABASE author_service_db;
+     
+   - Update the MySQL database connection properties in the `application.properties` files of both services.
+
+   - Start Eureka Server:
+     bash
+     cd eureka-server
+     mvn spring-boot:run
+     
+
+   - Start API Gateway:
+     bash
+     cd api-gateway
+     mvn spring-boot:run
+     
+
+   - Start BookService:
+     bash
+     cd book-service
+     mvn spring-boot:run
+     
+
+   - Start AuthorService:
+     bash
+     cd author-service
+     mvn spring-boot:run
+     
+
+3. Testing the APIs:
+   - Use Postman to test the API endpoints.
+   - Example: `GET http://localhost:8080/books` to get all books via the API Gateway.
+
+ Future Enhancements
+- Add security using OAuth2 or JWT.
+- Implement service resilience with Spring Cloud Circuit Breaker (Hystrix).
+- Use Docker to containerize the services for easier deployment.
+
+
